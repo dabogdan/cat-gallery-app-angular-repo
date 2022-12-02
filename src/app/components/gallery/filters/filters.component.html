@@ -1,0 +1,16 @@
+<form (ngSubmit)="submitted(limitNumber.value, breedInput.value)">
+
+  <label for="limitNumber"> Number of pics (1 to 100)</label>
+  <input type="number" #limitNumber mane="limit" value="10">
+
+  <label for="breed">Choose the breed to from the list to filter: </label>
+  <input list="breeds" name="breed" id="breedInput" #breedInput>
+  <ng-container *ngIf="breedsData$ | async as breedsData">
+    <datalist id="breeds">
+      <option>All breeds</option>
+      <option *ngFor="let breed of breedsData.breeds">{{breed.name}}</option>
+    </datalist>
+  </ng-container>
+
+  <button type="submit">Filter</button>
+</form>

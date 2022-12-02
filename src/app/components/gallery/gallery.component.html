@@ -1,0 +1,13 @@
+<app-filters (onSubmit)="onFilterSubmit($event)" (DEFAULT_LIMIT)="DEFAULT_LIMIT"></app-filters>
+
+<h1>Cat Gallery</h1>
+<ng-container *ngIf="imagesData$ | async as imagesData">
+  <div *ngIf="imagesData.pending">
+      Loading...
+  </div>
+  <div *ngIf="!imagesData.pending" class="gallery">
+    <div *ngFor="let image of imagesData.images" #pending>
+      <app-gallery-item [imageObj]="image" ></app-gallery-item>
+    </div>
+  </div>
+</ng-container>
